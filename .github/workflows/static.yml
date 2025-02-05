@@ -5,9 +5,11 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+  actions: write
+  deployments: write
 
 concurrency:
   group: "pages"
@@ -27,6 +29,7 @@ jobs:
         uses: actions/configure-pages@v4
         with:
           enablement: true
+          token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Update data file 2
         run: |
